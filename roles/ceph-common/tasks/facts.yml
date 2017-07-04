@@ -9,7 +9,7 @@
 # because it blindly picks a mon, which may be down because
 # of the rolling update
 - name: is ceph running already?
-  command: ceph --connect-timeout 3 --cluster {{ cluster }} fsid
+  command: timeout -s9 -k5 10 ceph --connect-timeout 3 --cluster {{ cluster }} fsid
   changed_when: false
   failed_when: false
   always_run: yes
